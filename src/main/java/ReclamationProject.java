@@ -7,20 +7,50 @@
  * 4. Add comments and Javadoc comments where needed
  * 5. Remove unnecessary comments as appropriate
  */
+/**
+ * @author Spencer Gilbert collab with probably Prof. Challen
+ */
 
-public class ReclamationProject
-{
-    static String doit(String a,String b){
-        if (a.length() > b.length()){
-            String c = a; // TODO: set c to a
-            a=b; b=c;}
-        String r = (a.equals(b)) ? "" : ""; // I love the ternary operator!
-        /*
-         * For loop with i
-         */
-        for (int i = 0; i < a.length(); i++) { for (int j = a.length() - i; j > 0; j--) {
-                for (int k = 0; k < b.length()- j; k++) {
-                    r = (a.regionMatches(i, b, k, j) && j >r.length()) ? a.substring(i,i + j) : r; // Do it!
-                        }} // Ah yeah
-        } return r; }
+public class ReclamationProject {
+
+    /**
+     *
+     * @param args main string argument
+     */
+    public static void main(final String[]args) {
+        System.out.println(doIt("hello", "helloworld"));
+    }
+
+    /**
+    *
+    * @param str1 the first string parameter
+    * @param str2 the second string parameter
+    * @return String
+    */
+
+    public static String doIt(final String str1, final String str2) {
+        String higher = "";
+        String lower = "";
+        if (str1.length() > str2.length()) {
+            higher = str1;
+            lower = str2;
+        } else {
+            higher = str2;
+            lower = str1;
+        }
+        String r = "";
+        //Loop through the larger string
+        for (int i = 0; i < higher.length(); i++) {
+            //Loop through the amount of characters to check in region matches
+            for (int j = higher.length() - i; j > 0; j--) {
+                //Looping through the offset of the string argument in region matches
+                for (int k = 0; k < lower.length() - j + 1; k++) {
+                    if (higher.regionMatches(i, lower, k, j) && j > r.length()) {
+                        r = higher.substring(i, i + j); //Finds the largest common substring
+                    }
+                }
+            }
+        }
+        return r;
+    }
 }
